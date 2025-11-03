@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      color: #444;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Payment Page</h2>
+    <form>
+      <!-- Payment Method -->
+      <label for="method">Select Payment Method</label>
+      <select id="method" name="method" required>
+        <option value="">--Choose Method--</option>
+        <option value="card">Credit/Debit Card</option>
+        <option value="upi">UPI</option>
+        <option value="netbanking">Net Banking</option>
+      </select>
+
+      <!-- Card Payment -->
+      <div id="card-section" style="display:none;">
+        <label for="cardName">Cardholder Name</label>
+        <input type="text" id="cardName" placeholder="Enter cardholder name">
+
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+
+        <label for="expiry">Expiry Date</label>
+        <input type="month" id="expiry">
+
+        <label for="cvv">CVV</label>
+        <input type="password" id="cvv" placeholder="***">
+      </div>
+
+      <!-- UPI Payment -->
+      <div id="upi-section" style="display:none;">
+        <label for="upiId">UPI ID</label>
+        <input type="text" id="upiId" placeholder="example@upi">
+      </div>
+
+      <!-- Net Banking -->
+      <div id="netbanking-section" style="display:none;">
+        <label for="bank">Select Bank</label>
+        <select id="bank">
+          <option value="">--Choose Bank--</option>
+          <option value="sbi">State Bank of India</option>
+          <option value="hdfc">HDFC Bank</option>
+          <option value="icici">ICICI Bank</option>
+          <option value="axis">Axis Bank</option>
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">Pay Now</button>
+    </form>
+  </div>
+
+  <script>
+    const methodSelect = document.getElementById('method');
+    const cardSection = document.getElementById('card-section');
+    const upiSection = document.getElementById('upi-section');
+    const netBankingSection = document.getElementById('netbanking-section');
+
+    methodSelect.addEventListener('change', () => {
+      cardSection.style.display = "none";
+      upiSection.style.display = "none";
+      netBankingSection.style.display = "none";
+
+      if(methodSelect.value === "card") {
+        cardSection.style.display = "block";
+      } else if(methodSelect.value === "upi") {
+        upiSection.style.display = "block";
+      } else if(methodSelect.value === "netbanking") {
+        netBankingSection.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
+
